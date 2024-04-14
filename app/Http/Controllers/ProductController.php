@@ -17,38 +17,51 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 
+/**
+ * Class ProductController
+ * @package App\Http\Controllers
+ */
 class ProductController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the product.
      *
      * @return Application|Factory|View
      */
     public function index()
     {
+        // Retrieve paginated products
         $data['products']=Product::paginate(12);
 
         return view('product.productindex', $data);
     }
+
+    /**
+     * Display products for the general shop page.
+     *
+     * @return Application|Factory|View
+     */
     public function productShop()
     {
+        // Retrieve paginated products with categories
         $data['products']=Product::with('category')->paginate(12);
         return view('product.productshopgeneral', $data);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new product.
      *
      * @return Application|Factory|View
      */
     public function create()
     {
+        // Retrieve categories
         $categories = Category::select('id','cat_name')->get();
         return view('product.productcreate', compact('categories'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created product in storage.
      *
      * @param Request $request
      * @return RedirectResponse
@@ -56,6 +69,7 @@ class ProductController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // Validate incoming request data
         $this->validate($request, [
             'title' => 'required',
             'price' => 'required',
@@ -64,6 +78,7 @@ class ProductController extends Controller
             'status' => 'required'
         ]);
         try {
+            // Handle main product image upload
             $filename = '';
             if ($request->file('image_prod')) {
 
@@ -73,6 +88,7 @@ class ProductController extends Controller
                     $file->move(public_path('/uploads/products'), $filename);
             }
 
+            // Create new product entry
             $input = Product::create([
                 'title' => trim($request->input('title')),
                 'price' => trim($request->input('price')),
@@ -84,28 +100,32 @@ class ProductController extends Controller
                 'status' => $request->input('status')
 
             ]);
-                if ($request->file('image_prods')) {
 
-                    $photos = $request->file('image_prods');
-                    foreach ($photos as $photo) {
-                    $prodImgnamenew = Str::of($request->input('title'))->trim();
-                    $filenew = $photo;
-                    $filenamenew = $prodImgnamenew.time().'.'.$filenew->getClientOriginalExtension();
-                    $filenew->move(public_path('/uploads/products'), $filenamenew);
+            // Handle additional product images upload
+            if ($request->file('image_prods')) {
 
-                        ProductImage::create([
-                            'product_id' => $input->id,
-                            'pi_sub_image' => $filenamenew
-                        ]);
-                }
+                $photos = $request->file('image_prods');
+                foreach ($photos as $photo) {
+                $prodImgnamenew = Str::of($request->input('title'))->trim();
+                $filenew = $photo;
+                $filenamenew = $prodImgnamenew.time().'.'.$filenew->getClientOriginalExtension();
+                $filenew->move(public_path('/uploads/products'), $filenamenew);
+
+                    ProductImage::create([
+                        'product_id' => $input->id,
+                        'pi_sub_image' => $filenamenew
+                    ]);
+            }
             }
 
+            // Flash success message
             session()->flash('message','Submitted!');
             session()->flash('type','success');
             return redirect()->back();
         }
         catch(Exception $e){
 
+            // Flash error message on exception
             session()->flash('message',$e->getMessage());
             session()->flash('type','danger');
 
@@ -115,7 +135,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified product.
      *
      * @param int $id
      * @return Application|Factory|View
@@ -138,7 +158,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified product.
      *
      * @param  int  $id
      * @return Application|Factory|View
@@ -151,7 +171,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified product in storage.
      *
      * @param Request $request
      * @param  int  $id
@@ -278,7 +298,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified product from storage.
      *
      * @param  int  $id
      * @return RedirectResponse
