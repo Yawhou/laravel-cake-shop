@@ -23,24 +23,28 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        // Retrieve paginated categories
         $data['categories']=Category::select('id','cat_name', 'slug','status','description','image_cat')->paginate(10);
+        // Return view with categories data
         return view('category.categoryindexuser', $data);// category/categoryindex works too
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new category.
      *
      * @return Application|Factory|View
      */
     public function create()
     {
+        // Retrieve categories for select input
         $categories = Category::select('id','cat_name')->get();
+        // Return view with categories data
         return view('category.categorycreate', compact('categories'));
 
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created category in storage.
      *
      * @param Request $request
      * @return RedirectResponse
@@ -48,11 +52,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // Validate request data
         $this->validate($request, [
             'cat_name' => 'required|unique:categories,cat_name',
             'status' => 'required'
         ]);
         try {
+             // Handle file upload
             $filename='';
             if($request->file('image_cat'))
             {
@@ -61,6 +67,7 @@ class CategoryController extends Controller
                 $filename= $catename.time().'.'.$file->getClientOriginalExtension();
                 $file-> move(public_path('/uploads/categories'), $filename);
             }
+        // Create category
         Category::create([
             'cat_name' => trim($request->input('cat_name')),
             'slug' => Str::slug(trim($request->input('cat_name'))),
@@ -70,12 +77,13 @@ class CategoryController extends Controller
             'status' => $request->input('status')
 
         ]);
+            // Flash success message and redirect back
             session()->flash('message','Submitted!');
             session()->flash('type','success');
             return redirect()->back();
         }
         catch(Exception $e){
-
+            // Flash error message and redirect back in case of exception
             session()->flash('message',$e->getMessage());
             session()->flash('type','danger');
 
@@ -85,7 +93,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified category.
      *
      * @param  int  $id
      * @return Application|Factory|View
@@ -93,13 +101,15 @@ class CategoryController extends Controller
     public function show($id)
     {
         try {
-            $data['category'] = Category::findOrFail($id);
-            $data['category'] = $data['category']->setRelation('products', $data['category']->products()->paginate(10));
+            // Retrieve category by ID with paginated products
+            $data['category'] = Category::findOrFail($id)->setRelation('products', Category::findOrFail($id)->products()->paginate(10));
 
+            // Return view with category data
             return view('category.categoryshowuser', $data);
         }
         catch(Exception $e){
 
+        // Flash error message and redirect back in case of exception
         session()->flash('message',$e->getMessage());
         session()->flash('type','danger');
         $categories=Category::paginate(10);
@@ -109,22 +119,24 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified category.
      *
      * @param  int  $id
      * @return Application|Factory|View
      */
     public function edit($id)
     {
+        // Retrieve category and categories for select input
         $category=Category::find($id);
         $categories_name = Category::select('id','cat_name')->get();
+        // Return view with category data
         return view('category.categoryedit', compact(['category', 'categories_name']));
 
 
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified category in storage.
      *
      * @param Request $request
      * @param int $id
@@ -134,19 +146,25 @@ class CategoryController extends Controller
     public function update(Request $request, $id): RedirectResponse
     {
         try {
+            // Retrieve category by ID
             $data = Category::findOrFail($id);
         }
-        catch (Exception $e)
-        {session()->flash('message',$e->getMessage());
+        catch (Exception $e){
+        // Flash error message and redirect back in case of exception
+            session()->flash('message',$e->getMessage());
             session()->flash('type','danger');
 
-            return redirect()->back();}
+            return redirect()->back();
+        }
 
+        // Validate request data
         $this->validate($request, [
             'cat_name' => 'required|unique:categories,cat_name,'.$id,
             'status' => 'required'
         ]);
+
         try {
+            // Handle file upload if exists
             if($request->file('image_cat'))
             {
                 if( File::exists(public_path('/uploads/categories/'.$data->image_cat)) ) {
@@ -158,6 +176,7 @@ class CategoryController extends Controller
                 $filename= $catename.time().'.'.$file->getClientOriginalExtension();
                 $file-> move(public_path('/uploads/categories'), $filename);
 
+                // Update category with new data and filename
                 $data->update([
                     'cat_name' => trim($request->input('cat_name')),
                     'slug' => Str::slug(trim($request->input('cat_name'))),
@@ -166,12 +185,15 @@ class CategoryController extends Controller
                     'category_id'=>$request->input('category_id'),
                     'status' => $request->input('status')
                 ]);
+
+                // Flash success message and redirect back
                 session()->flash('message','Submitted!');
                 session()->flash('type','success');
                 return redirect()->back();
 
             }
             else {
+                // Update category without changing image
                 $data->update([
                     'cat_name' => trim($request->input('cat_name')),
                     'slug' => Str::slug(trim($request->input('cat_name'))),
@@ -179,6 +201,7 @@ class CategoryController extends Controller
                     'category_id' => $request->input('category_id'),
                     'status' => $request->input('status')
                 ]);
+                // Flash success message and redirect back
                 session()->flash('message', 'Submitted!');
                 session()->flash('type', 'success');
                 return redirect()->back();
@@ -186,6 +209,7 @@ class CategoryController extends Controller
         }
         catch(Exception $e){
 
+            // Flash error message and redirect back in case of exception
             session()->flash('message',$e->getMessage());
             session()->flash('type','danger');
 
@@ -194,7 +218,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified category from storage.
      *
      * @param  int  $id
      * @return RedirectResponse
@@ -202,18 +226,21 @@ class CategoryController extends Controller
     public function destroy($id): RedirectResponse
     {
         try {
+            // Retrieve and delete category by ID
             $data = Category::find($id);
             $data->delete();
+
+            // Flash success message and redirect to categories index
             session()->flash('message', 'Deleted!');
             session()->flash('type', 'success');
             return redirect()->route("categories.index");
-        }
-        catch(Exception $e){
-        session()->flash('message',$e->getMessage());
-        session()->flash('type','danger');
+        }catch(Exception $e){
+            // Flash error message and redirect back in case of exception
+            session()->flash('message',$e->getMessage());
+            session()->flash('type','danger');
 
-        return redirect()->back();
-    }
+            return redirect()->back();
+        }
 
     }
 }
