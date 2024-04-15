@@ -15,6 +15,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
@@ -104,7 +105,7 @@ class LoginController extends Controller
                 'required',
                 function ($attribute, $value, $fail) use ($request) {
                     $callingCode = $request->input('calling_code');
-                    $phoneNumber = '+88-' . $value;
+                    $phoneNumber = '+6-' . $value;
                     $exists = User::where('phone_number', $phoneNumber)->exists();
 
                     if ($exists) {
@@ -120,9 +121,9 @@ class LoginController extends Controller
             'name'=>$request->input('name'),
             'email'=>strtolower(trim($request->input('email'))),
 //            'phone_number'=>trim($request->input('phone_number')),
-            'phone_number'=>'+88'. '-' .trim($request->input('phone_number')),
-            'password'=>bcrypt($request->input('password')),
-            'email_verification_token'=> uniqid(now('Asia/Dhaka').$request->input('email'),true).Str::random(40)
+            'phone_number'=>'+6'. '-' .trim($request->input('phone_number')),
+            'password'=>Hash::make($request->input('password')), //will use bcrypt for hashing, as set in config/hashing.php
+            'email_verification_token'=> uniqid(now('Asia/Kuala_Lumpur')->format('Y-m-d H:i:s').$request->input('email'),true).Str::random(40)
 
         ];
         try {
