@@ -20,18 +20,15 @@ use Psr\Container\NotFoundExceptionInterface;
 class CartController extends Controller
 {
     /**
-     * Adds a product to the cart immediately.
+     * Display a listing of the resource.
      *
      * @param Request $request
      * @return RedirectResponse
      */
     public function buynow(Request $request): RedirectResponse
     {
-        // Retrieve the product by ID
         $product = Product::with('category')->findOrFail($request->input('product_id'));
         $cart = [];
-
-        // Validate the request
         try {
             $this->validate($request, [
                 'product_id'=>'required|numeric'
@@ -41,7 +38,6 @@ class CartController extends Controller
             return redirect()->back()->with('message', $e);
         }
 
-        // Add product to cart
         if (session()->has('cart'))
         {
             try {
@@ -51,7 +47,6 @@ class CartController extends Controller
 
             }
 
-            // Check if the product already exists in the cart
             if (array_key_exists($product->id, $cart['products']))
             {
                 $cart['products'][$product->id]['quantity']+=1;
@@ -70,7 +65,6 @@ class CartController extends Controller
 
         }
         else {
-            // If cart doesn't exist, create a new one
             $cart['products'] = [
                 $product->id => [
                     'product_id'=> $product->id,
@@ -83,10 +77,8 @@ class CartController extends Controller
             ];
         }
 
-        // Save the cart to session
         session(['cart'=> $cart]);
 
-        // Flash success message and redirect to cart
         session()->flash('message', $product->title.' Added To Cart Successfully!');
         session()->flash('type', 'success');
 
@@ -94,20 +86,18 @@ class CartController extends Controller
     }
 
     /**
-     * Adds a product to the cart.
+     * Show the form for creating a new resource.
      *
      * @param Request $request
      * @return RedirectResponse
      */
     public function addToCart(Request $request): RedirectResponse
     {
-        // Similar logic to buynow method, but doesn't redirect to cart.show
 
-        // Retrieve the product by ID
         $product = Product::with('category')->findOrFail($request->input('product_id'));
         $cart = [];
 
-        // Validate the request
+
         try {
             $this->validate($request, [
                 'product_id'=>'required|numeric'
@@ -167,7 +157,7 @@ class CartController extends Controller
 
 
     /**
-     * Display the cart contents.
+     * Display the specified resource.
      *
      * @return Application|Factory|View|RedirectResponse
      */
@@ -231,7 +221,7 @@ class CartController extends Controller
     }
 
     /**
-     * Remove a product from the cart.
+     * Update the specified resource in storage.
      *
      * @param Request $request
      * @return RedirectResponse
@@ -262,15 +252,17 @@ class CartController extends Controller
     }
 
     /**
-     * Process the order.
+     * Remove the specified resource from storage.
      *
      * @param Request $request
      * @return Application|Factory|View|RedirectResponse
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public function processOrder(Request $request)
     {
         try {
-            // Create an order with the submitted data
+
             $order = Order::create([
                 'user_id' => auth()->user()->id,
             'customer_name' => auth()->user()->name,
