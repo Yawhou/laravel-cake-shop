@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'driver' => 'bcrypt',
+    'driver' => 'bcrypt', //this specifies the default hash driver to use
 
     /*
     |--------------------------------------------------------------------------

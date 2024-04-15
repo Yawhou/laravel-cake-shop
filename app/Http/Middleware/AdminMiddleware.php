@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class AdminMiddleware
 {
     /**
-     * Handle an incoming request.
+     * Handle an incoming request, and make sure the user is administrator
      *
      * @param Request $request
      * @param Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
@@ -21,7 +21,7 @@ class AdminMiddleware
     {
         if(Auth::check())
         {
-            if(Auth::user()->role_as == '1')
+            if(Auth::user()->role_as == '1') //to check if user is admin role
             {
                 return $next($request);
             }
