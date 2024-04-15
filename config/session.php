@@ -168,7 +168,7 @@ return [
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE'),
+    'secure' => env('SESSION_SECURE_COOKIE'), //session secure cookie is set to true in .env file
 
     /*
     |--------------------------------------------------------------------------
