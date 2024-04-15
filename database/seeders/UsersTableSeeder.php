@@ -30,6 +30,7 @@ class UsersTableSeeder extends Seeder
             'password'=>bcrypt('123456')
         ]);
 
-
+        // Use the definition provided by UserFactory to create 3 fake user records
+        User::factory()->count(3)->create();
     }
 }

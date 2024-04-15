@@ -41,7 +41,6 @@
 </body>
 
 <footer class="blog-footer">
-    <p>This website is built by <a href="#">Md. Mahin Rahman</a>.</p>
     <p>
         <a href="#">Back to top</a>
     </p>
