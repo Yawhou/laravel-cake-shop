@@ -7,7 +7,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RedirectIfAuthenticated
+class RedirectIfAuthenticated   //defined as 'guest' from Kernel's $routeMiddleware
 {
     /**
      * Handle an incoming request.

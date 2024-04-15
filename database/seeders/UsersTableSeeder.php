@@ -19,14 +19,14 @@ class UsersTableSeeder extends Seeder
             'email'=>'admin@gmail.com',
             'name'=>'admin',
             'phone_number'=>'12345678910',
-            'role_as'=>'1',
+            'role_as'=>'1', //admin
             'password'=>bcrypt('123456')
         ]);
         User::create([
             'email'=>'arpita@gmail.com',
             'name'=>'arpita',
             'phone_number'=>'12345678910',
-            'role_as'=>'0',
+            'role_as'=>'0', //normal user
             'password'=>bcrypt('123456')
         ]);
 
