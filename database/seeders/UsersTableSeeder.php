@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UsersTableSeeder extends Seeder
 {
@@ -20,14 +21,14 @@ class UsersTableSeeder extends Seeder
             'name'=>'admin',
             'phone_number'=>'12345678910',
             'role_as'=>'1', //admin
-            'password'=>bcrypt('123456')
+            'password'=>Hash::make('123456')  //will use bcrypt for hashing, as set in config/hashing.php
         ]);
         User::create([
             'email'=>'arpita@gmail.com',
             'name'=>'arpita',
             'phone_number'=>'12345678910',
             'role_as'=>'0', //normal user
-            'password'=>bcrypt('123456')
+            'password'=>Hash::make('123456')
         ]);
 
         // Use the definition provided by UserFactory to create 3 fake user records
