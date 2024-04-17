@@ -25,15 +25,15 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group">
-                    <label for="cat_name">Category Name</label>
-                    <input name="cat_name" type="text" class="form-control" id="cat_name"  placeholder="Enter category name" value="{{$category->cat_name}}">
+                    <label for="category_name">Category Name</label>
+                    <input name="category_name" type="text" class="form-control" id="category_name"  placeholder="Enter category name" value="{{$category->category_name}}">
                 </div>
                 <div class="form-group">
                     <label for="category_id">Alternative Category Name(optional)</label>
                     <select class="form-control" name="category_id">
                         <option value="">Select a category</option>
                         @foreach($categories_name as $category_name)
-                            <option value="{{ $category_name->id }}">{{ $category_name->cat_name }}</option>
+                            <option value="{{ $category_name->id }}">{{ $category_name->category_name }}</option>
                         @endforeach
                     </select>
                 </div>

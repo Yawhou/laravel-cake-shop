@@ -56,7 +56,7 @@ class ProductController extends Controller
     public function create()
     {
         // Retrieve categories
-        $categories = Category::select('id','cat_name')->get();
+        $categories = Category::select('id','category_name')->get();
         return view('product.productcreate', compact('categories'));
     }
 
@@ -166,7 +166,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product=Product::with('category')->findOrFail($id);
-        $categories = Category::select('id','cat_name')->get();
+        $categories = Category::select('id','category_name')->get();
         return view('product.productedit', compact(['product', 'categories']));
     }
 

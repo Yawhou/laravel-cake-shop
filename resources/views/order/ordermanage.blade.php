@@ -25,7 +25,7 @@
     </div>
     @endif
 
-    <h1 style="text-align: center;"><span style="color: #ff4321;">Order</span> <span style="color: black;">History</span></h1>
+    <h1 style="text-align: center;"><span style="color: #b48900;">Order</span> <span style="color: black;">History</span></h1>
        <div class="table-responsive">
         <table class="table">
             <thead style="background: #1F2739;">

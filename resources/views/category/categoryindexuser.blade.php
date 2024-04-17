@@ -40,7 +40,7 @@
                                     @endif
                                     @endif
                                 </div>
-                                <small class="text-muted" style="color: #2fa360 !important;">{{$category->cat_name}}</small>
+                                <small class="text-muted" style="color: #2fa360 !important;">{{$category->category_name}}</small>
                             </div>
                         </div>
                     </div>

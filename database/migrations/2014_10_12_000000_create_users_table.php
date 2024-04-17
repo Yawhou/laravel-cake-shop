@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('email_verification_token')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->tinyInteger('role_as')->default('0'); //Add in UserTable before timestamps, 0 indicates normal user
+            $table->tinyInteger('role_as')->default('2'); //Add in UserTable before timestamps, 2 indicates normal user
             $table->rememberToken();
             $table->timestamps();
         });

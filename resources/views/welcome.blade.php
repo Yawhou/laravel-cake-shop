@@ -137,7 +137,7 @@
     }
 
     .benefit .icon {
-        color:  #ff4321;
+        color:  #b48900;
         font-size: 64px;
     }
 
@@ -163,7 +163,7 @@
     }
 
     .h span {
-        color:  #ff4321;
+        color:  #b48900;
     }
 
     .ac-center {
@@ -344,8 +344,8 @@
 
             <div class="benefit">
                 <span class="icon"><i class="bx bx-book-reader"></i></span>
-                <h4>Yummy and Fresh</h4>
-                <span class="text">Free of chemicals</span>
+                <h4>Vast Amount Of Genres</h4>
+                <span class="text">Search by category</span>
             </div>
 
             <div class="benefit">
@@ -381,12 +381,12 @@
                 </div>
                 @if($latest['sale_price']>0)
                     <div class="price">
-                        <strike style="color: #761b18;">BDT {{$latest['price']}}</strike>
-                        <span style="color: #2d995b">BDT {{$latest['sale_price']}}</span>
+                        <strike style="color: #761b18;">RM {{$latest['price']}}</strike>
+                        <span style="color: #2d995b">RM {{$latest['sale_price']}}</span>
                     </div>
                     <a href="{{route('products.productshop')}}" class="btn btn-outline-success">ORDER NOW</a>
                 @else
-                    <div class="price">BDT {{$latest['price']}}</div>
+                    <div class="price">RM {{$latest['price']}}</div>
                     <a href="{{route('products.productshop')}}" class="btn btn-outline-success">ORDER NOW</a>
                 @endif
             </div>
@@ -459,12 +459,12 @@
                 </div>
                 @if($product['sale_price']>0)
                     <div class="price">
-                        <strike style="color: #761b18;">BDT {{$product['price']}}</strike>
-                        <span style="color: #2d995b">BDT {{$product['sale_price']}}</span>
+                        <strike style="color: #761b18;">RM {{$product['price']}}</strike>
+                        <span style="color: #2d995b">RM {{$product['sale_price']}}</span>
                     </div>
                     <a href="{{route('products.productshop')}}" class="btn btn-outline-success">ORDER NOW</a>
                 @else
-                    <div class="price">BDT {{$product['price']}}</div>
+                    <div class="price">RM {{$product['price']}}</div>
                     <a href="{{route('products.productshop')}}" class="btn btn-outline-success">ORDER NOW</a>
                 @endif
                 {{--<div class="price">LKR 8500</div>--}}

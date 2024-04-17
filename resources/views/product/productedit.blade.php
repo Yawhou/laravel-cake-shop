@@ -33,9 +33,9 @@
                     {{--                    <input name="cat_alter_name" type="text" class="form-control" id="cat_alter_name"  placeholder="Enter alternative name" value="{{old('cat_alter_name')}}">--}}
 
                     <select class="form-control" name="category_id">
-                        <option value="{{ $product->category->id }}">{{ $product->category->cat_name }}</option>
+                        <option value="{{ $product->category->id }}">{{ $product->category->category_name }}</option>
                         @foreach($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->cat_name }}</option>
+                            <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                         @endforeach
                     </select>
 

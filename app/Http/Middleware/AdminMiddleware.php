@@ -25,7 +25,7 @@ class AdminMiddleware
             {
                 return $next($request);
             }
-            elseif (Auth::user()->role_as == '0')
+            elseif (Auth::user()->role_as == '2')
             {
                 session()->flash('type','danger');
                 return redirect('/welcome')->with('message',"Access Denied! You don't have administrative permission!");

@@ -76,7 +76,7 @@ class LoginController extends Controller
 
                 return redirect()->intended();
             }
-            elseif(Auth::user()->role_as == '0') // Normal or Default User Login
+            elseif(Auth::user()->role_as == '2') // Normal or Default User Login
             {
                 $request->session()->regenerate();
                 return redirect()->intended() ;// intended will redirect back to the attempted route of user before facing validation

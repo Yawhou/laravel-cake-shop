@@ -225,7 +225,7 @@
 
     <div class = "products">
         <div class = "container">
-            <h1 class = "lg-title"><i>Category: <span style="color: #ff4321;">{{$category->cat_name}}</span></i></h1>
+            <h1 class = "lg-title"><i>Category: <span style="color: #ff4321;">{{$category->category_name}}</span></i></h1>
                         <p class = "text-dark">{{ $category->description }}</p>
 
             <div class = "product-items">
@@ -260,7 +260,7 @@
 
                         <div class = "product-info">
                             <div class = "product-info-top">
-                                <h2 class = "sm-title">{{$product->category->cat_name}}</h2>
+                                <h2 class = "sm-title">{{$product->category->category_name}}</h2>
                                 <div class = "rating">
                                     <span><i class = "fas fa-star"></i></span>
                                     <span><i class = "fas fa-star"></i></span>
@@ -271,10 +271,10 @@
                             </div>
                             <a href = "{{route('products.show', $product->id)}}" class = "product-name">{{$product->title}}</a>
                             @if($product->sale_price >0)
-                                <p class = "product-price">BDT {{$product->price}}</p>
-                                <p class = "product-price">BDT {{$product->sale_price}}</p>
+                                <p class = "product-price">RM {{$product->price}}</p>
+                                <p class = "product-price">RM {{$product->sale_price}}</p>
                             @else
-                                <p class = "product-price">BDT {{$product->price}}</p>
+                                <p class = "product-price">RM {{$product->price}}</p>
                             @endif
                         </div>
 

@@ -31,17 +31,17 @@
                     <h6 class="my-0">{{$product['title']}}</h6>
                     <small class="text-muted">{{$product['category']}}</small>
                 </div>
-                <span class="text-muted">BDT {{$product['product_total']}}</span>
+                <span class="text-muted">RM {{$product['product_total']}}</span>
             </li>
             @endforeach
 
             <li class="list-group-item d-flex justify-content-between">
-                <span>Total (BDT)</span>
-                <strong>BDT {{$cart['total']}}</strong>
+                <span>Total (RM)</span>
+                <strong>RM {{$cart['total']}}</strong>
             </li>
                 <li class="list-group-item d-flex justify-content-between">
-                <span>Shipping (BDT)</span>
-                <strong>BDT 150</strong>
+                <span>Shipping (RM)</span>
+                <strong>RM 150</strong>
             </li>
         </ul>
     </div>

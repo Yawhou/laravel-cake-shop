@@ -17,18 +17,18 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         User::create([
-            'email'=>'admin@gmail.com',
+            'email'=>'admin@email.com',
             'name'=>'admin',
-            'phone_number'=>'12345678910',
+            'phone_number'=>'+60123456789',
             'role_as'=>'1', //admin
-            'password'=>Hash::make('123456')  //will use bcrypt for hashing, as set in config/hashing.php
+            'password'=>Hash::make('qwerty')  //will use bcrypt for hashing, as set in config/hashing.php
         ]);
         User::create([
-            'email'=>'arpita@gmail.com',
-            'name'=>'arpita',
-            'phone_number'=>'12345678910',
-            'role_as'=>'0', //normal user
-            'password'=>Hash::make('123456')
+            'email'=>'user@email.com',
+            'name'=>'user',
+            'phone_number'=>'+60123456789',
+            'role_as'=>'2', //normal user
+            'password'=>Hash::make('qwerty')
         ]);
 
         // Use the definition provided by UserFactory to create 3 fake user records

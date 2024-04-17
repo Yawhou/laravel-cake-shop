@@ -19,7 +19,7 @@
         height: 100vh;
         clip-path: polygon(0 0, 60vw 0, 40vw 100vh, 0 100vh);
         z-index: 1;
-        background-image:linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url({{ asset('/uploads/other/blackforest.jpg') }});
+        background-image:linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url({{ asset('/uploads/other/books.jpg') }});
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
@@ -31,7 +31,7 @@
         width: 60%;
         background-color: green;
         height: 100vh;
-        background-image: linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,.5)), url({{ asset('/uploads/other/redvelvet.jpg') }});
+        background-image: linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,.5)), url({{ asset('/uploads/other/abook.jpg') }});
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
@@ -82,7 +82,7 @@
 <div class='hero'>
     <div class="hero-one"></div>
     <div class="hero-two"></div>
-    <h1 class="header-title"><span class="header-primary">Cakes</span><span class="header-sub">and your deepest desire</span></h1>
+    <h1 class="header-title"><span class="header-primary">Books</span><span class="header-sub">and your deepest desire</span></h1>
 </div>
 
 
