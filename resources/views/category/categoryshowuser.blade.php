@@ -271,10 +271,10 @@
                             </div>
                             <a href = "{{route('products.show', $product->id)}}" class = "product-name">{{$product->title}}</a>
                             @if($product->sale_price >0)
-                                <p class = "product-price">BDT {{$product->price}}</p>
-                                <p class = "product-price">BDT {{$product->sale_price}}</p>
+                                <p class = "product-price">RM {{$product->price}}</p>
+                                <p class = "product-price">RM {{$product->sale_price}}</p>
                             @else
-                                <p class = "product-price">BDT {{$product->price}}</p>
+                                <p class = "product-price">RM {{$product->price}}</p>
                             @endif
                         </div>
 

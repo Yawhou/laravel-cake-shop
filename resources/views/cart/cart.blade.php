@@ -226,7 +226,7 @@
                                 </button>
                         </div>
                         </form>
-                        <div class="col">BDT {{$product['product_total']}}
+                        <div class="col">RM {{$product['product_total']}}
                             <a  href="{{route('cart.remove', $product)}}">
                                 <span class="close">&#10005;</span></a></div>
                     </div>
@@ -240,18 +240,18 @@
                 <hr>
                 <div class="row">
                     <div class="col" style="padding-left:0;">TOTAL ITEMS: {{$cart['quantity_total']}}</div>
-                    <div class="col text-right">BDT {{$cart['total']}}</div>
+                    <div class="col text-right">RM {{$cart['total']}}</div>
                 </div>
                 <form>
                     <p>SHIPPING</p>
                     <select>
-                        <option class="text-muted">Standard-Delivery- 150.00 BDT</option>
+                        <option class="text-muted">Standard-Delivery- 150.00 RM</option>
                     </select>
 
                 </form>
                 <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                     <div class="col">TOTAL PRICE</div>
-                    <div class="col text-right">BDT {{$cart['total']+150}}</div>
+                    <div class="col text-right">RM {{$cart['total']+150}}</div>
                 </div>
                <button class="btna"><a href="{{route('cart.checkout')}}">CHECKOUT</a></button>
             </div>

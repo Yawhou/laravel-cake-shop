@@ -289,7 +289,7 @@
 
     <div class = "products">
         <div class = "container">
-            <h1 class = "lg-title"><i>Your delicious experience starts here</i></h1>
+            <h1 class = "lg-title"><i>Your wonderful journey starts here</i></h1>
 {{--            <p class = "text-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur quos sit consectetur, ipsa voluptatem vitae necessitatibus dicta veniam, optio, possimus assumenda laudantium. Temporibus, quis cum.</p>--}}
 
             <div class = "product-items">
@@ -335,10 +335,10 @@
                         </div>
                         <a href = "{{route('products.show', $product->id)}}" class = "product-name">{{$product->title}}</a>
                         @if($product->sale_price >0)
-                            <p class = "product-price">BDT {{$product->price}}</p>
-                            <p class = "product-price">BDT {{$product->sale_price}}</p>
+                            <p class = "product-price">RM {{$product->price}}</p>
+                            <p class = "product-price">RM {{$product->sale_price}}</p>
                         @else
-                            <p class = "product-price">BDT {{$product->price}}</p>
+                            <p class = "product-price">RM {{$product->price}}</p>
                         @endif
                     </div>
 

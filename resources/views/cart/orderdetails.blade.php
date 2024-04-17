@@ -205,7 +205,7 @@
                     <span id="name">Quantity: {{$product['quantity']}}</span>
                 </div>
                 <div class="col-3">
-                    <span id="price">BDT {{$product['product_total']}}</span>
+                    <span id="price">RM {{$product['product_total']}}</span>
                 </div>
             </div>
             @endforeach
@@ -214,14 +214,14 @@
                     <span id="name">Shipping</span>
                 </div>
                 <div class="col-3">
-                    <span id="price">BDT 150.00</span>
+                    <span id="price">RM 150.00</span>
                 </div>
             </div>
         </div>
         <div class="total">
             <div class="row">
                 <div class="col-9"></div>
-                <div class="col-3"><big>BDT {{$cart['total']+150}}</big></div>
+                <div class="col-3"><big>RM {{$cart['total']+150}}</big></div>
             </div>
         </div>
         <div class="tracking">

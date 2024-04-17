@@ -106,10 +106,10 @@
                             <div class="col-lg-12">
                                 <p class="m-0 p-0 price-pro">
                                     @if($product->sale_price != null || $product->sale_price > 0)
-                                        <strike>BDT {{ $product->price  }}</strike><br>
-                                        <strong>BDT {{ $product->sale_price}}</strong>
+                                        <strike>RM {{ $product->price  }}</strike><br>
+                                        <strong>RM {{ $product->sale_price}}</strong>
                                     @else
-                                       <strong>BDT {{ $product->price  }}</strong>
+                                       <strong>RM {{ $product->price  }}</strong>
                                     @endif
                                 </p>
                                 <hr class="p-0 m-0">
