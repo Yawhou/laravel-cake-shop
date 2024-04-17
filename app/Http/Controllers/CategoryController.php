@@ -24,7 +24,7 @@ class CategoryController extends Controller
     public function index()
     {
         // Retrieve paginated categories
-        $data['categories']=Category::select('id','cat_name', 'slug','status','description','image_cat')->paginate(10);
+        $data['categories']=Category::select('id','category_name', 'slug','status','description','image_cat')->paginate(10);
         // Return view with categories data
         return view('category.categoryindexuser', $data);// category/categoryindex works too
     }
@@ -37,7 +37,7 @@ class CategoryController extends Controller
     public function create()
     {
         // Retrieve categories for select input
-        $categories = Category::select('id','cat_name')->get();
+        $categories = Category::select('id','category_name')->get();
         // Return view with categories data
         return view('category.categorycreate', compact('categories'));
 
@@ -54,7 +54,7 @@ class CategoryController extends Controller
     {
         // Validate request data
         $this->validate($request, [
-            'cat_name' => 'required|unique:categories,cat_name',
+            'category_name' => 'required|unique:categories,category_name',
             'status' => 'required'
         ]);
         try {
@@ -62,15 +62,15 @@ class CategoryController extends Controller
             $filename='';
             if($request->file('image_cat'))
             {
-                $catename= Str::of($request->input('cat_name'))->trim();
+                $catename= Str::of($request->input('category_name'))->trim();
                 $file= $request->file('image_cat');
                 $filename= $catename.time().'.'.$file->getClientOriginalExtension();
                 $file-> move(public_path('/uploads/categories'), $filename);
             }
         // Create category
         Category::create([
-            'cat_name' => trim($request->input('cat_name')),
-            'slug' => Str::slug(trim($request->input('cat_name'))),
+            'category_name' => trim($request->input('category_name')),
+            'slug' => Str::slug(trim($request->input('category_name'))),
             'description' => trim($request->input('description')),
             'image_cat' =>$filename,
             'category_id'=>$request->input('category_id'),
@@ -128,7 +128,7 @@ class CategoryController extends Controller
     {
         // Retrieve category and categories for select input
         $category=Category::find($id);
-        $categories_name = Category::select('id','cat_name')->get();
+        $categories_name = Category::select('id','category_name')->get();
         // Return view with category data
         return view('category.categoryedit', compact(['category', 'categories_name']));
 
@@ -159,7 +159,7 @@ class CategoryController extends Controller
 
         // Validate request data
         $this->validate($request, [
-            'cat_name' => 'required|unique:categories,cat_name,'.$id,
+            'category_name' => 'required|unique:categories,category_name,'.$id,
             'status' => 'required'
         ]);
 
@@ -171,15 +171,15 @@ class CategoryController extends Controller
                     File::delete(public_path('/uploads/categories/'.$data->image_cat));
                 }
 
-                $catename= Str::of($request->input('cat_name'))->trim();
+                $catename= Str::of($request->input('category_name'))->trim();
                 $file= $request->file('image_cat');
                 $filename= $catename.time().'.'.$file->getClientOriginalExtension();
                 $file-> move(public_path('/uploads/categories'), $filename);
 
                 // Update category with new data and filename
                 $data->update([
-                    'cat_name' => trim($request->input('cat_name')),
-                    'slug' => Str::slug(trim($request->input('cat_name'))),
+                    'category_name' => trim($request->input('category_name')),
+                    'slug' => Str::slug(trim($request->input('category_name'))),
                     'description' => trim($request->input('description')),
                     'image_cat' =>$filename,
                     'category_id'=>$request->input('category_id'),
@@ -195,8 +195,8 @@ class CategoryController extends Controller
             else {
                 // Update category without changing image
                 $data->update([
-                    'cat_name' => trim($request->input('cat_name')),
-                    'slug' => Str::slug(trim($request->input('cat_name'))),
+                    'category_name' => trim($request->input('category_name')),
+                    'slug' => Str::slug(trim($request->input('category_name'))),
                     'description' => trim($request->input('description')),
                     'category_id' => $request->input('category_id'),
                     'status' => $request->input('status')

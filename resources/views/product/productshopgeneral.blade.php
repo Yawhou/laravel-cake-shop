@@ -324,7 +324,7 @@
 
                     <div class = "product-info">
                         <div class = "product-info-top">
-                            <h2 class = "sm-title">{{$product->category->cat_name}}</h2>
+                            <h2 class = "sm-title">{{$product->category->category_name}}</h2>
                             <div class = "rating">
                                 <span><i class = "fas fa-star"></i></span>
                                 <span><i class = "fas fa-star"></i></span>

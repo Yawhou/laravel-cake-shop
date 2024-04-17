@@ -24,8 +24,8 @@
             <form method="POST" action="{{route('categories.store')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label for="cat_name">Category Name</label>
-                    <input name="cat_name" type="text" class="form-control" id="cat_name"  placeholder="Enter category name" value="{{old('cat_name')}}">
+                    <label for="category_name">Category Name</label>
+                    <input name="category_name" type="text" class="form-control" id="category_name"  placeholder="Enter category name" value="{{old('category_name')}}">
                 </div>
                 <div class="form-group">
                     <label for="category_id">Alternative Category Name(optional)</label>
@@ -33,7 +33,7 @@
                     <select class="form-control" name="category_id">
                         <option value="">Select a category</option>
                         @foreach($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->cat_name }}</option>
+                            <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                             @endforeach
                     </select>
 

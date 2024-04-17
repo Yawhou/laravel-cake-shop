@@ -100,7 +100,7 @@
                     <div class="right-side-pro-detail border p-3 m-0">
                         <div class="row">
                             <div class="col-lg-12">
-                                <span>{{$product->category->cat_name}}</span>
+                                <span>{{$product->category->category_name}}</span>
                                 <p class="m-0 p-0">{{ $product->title  }}</p>
                             </div>
                             <div class="col-lg-12">

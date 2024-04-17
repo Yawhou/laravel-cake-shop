@@ -61,7 +61,7 @@ class CartController extends Controller
                     'product_id'=> $product->id,
                     'title' => $product->title,
                     'image_prod' => $product->image_prod,
-                    'category' => $product->category->cat_name,
+                    'category' => $product->category->category_name,
                     'quantity' => 1,
                     'price' => ($product->sale_price != null && $product->sale_price > 0) ? $product->sale_price : $product->price
 
@@ -76,7 +76,7 @@ class CartController extends Controller
                     'product_id'=> $product->id,
                     'title' => $product->title,
                     'image_prod' => $product->image_prod,
-                    'category' => $product->category->cat_name,
+                    'category' => $product->category->category_name,
                     'quantity' => 1,
                     'price' => ($product->sale_price != null && $product->sale_price > 0) ? $product->sale_price : $product->price
                 ]
@@ -137,7 +137,7 @@ class CartController extends Controller
                         'product_id'=> $product->id,
                         'title' => $product->title,
                         'image_prod' => $product->image_prod,
-                        'category' => $product->category->cat_name,
+                        'category' => $product->category->category_name,
                         'quantity' => 1,
                         'price' => ($product->sale_price != null && $product->sale_price > 0) ? $product->sale_price : $product->price
                 ];
@@ -150,7 +150,7 @@ class CartController extends Controller
                     'product_id'=> $product->id,
                     'title' => $product->title,
                     'image_prod' => $product->image_prod,
-                    'category' => $product->category->cat_name,
+                    'category' => $product->category->category_name,
                     'quantity' => 1,
                     'price' => ($product->sale_price != null && $product->sale_price > 0) ? $product->sale_price : $product->price
                 ]
@@ -273,7 +273,7 @@ class CartController extends Controller
             // Create an order with the submitted data
             $order = Order::create([
                 'user_id' => auth()->user()->id,
-            'customer_name' => auth()->user()->name,
+                'customer_name' => auth()->user()->name,
                 'customer_phone_number' => auth()->user()->phone_number,
                 'address' => $request->input('address'),
                 'city' => $request->input('city'),

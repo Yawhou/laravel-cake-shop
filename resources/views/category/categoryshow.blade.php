@@ -8,7 +8,7 @@
     </div>
     @endif
 
-    <h3>{{ $category->cat_name }}</h3>
+    <h3>{{ $category->category_name }}</h3>
     <p style="color: green">
         ID: {{ $category->id }}
     </p>
@@ -24,7 +24,7 @@
     <p style="color: firebrick; overflow: hidden; text-overflow: ellipsis;">
         Description: {{ $category->description }}
     </p>
-    <h2>Products under {{$category->cat_name}}</h2>
+    <h2>Products under {{$category->category_name}}</h2>
     <table class="table table-bordered table-condensed">
         <h3>Products List</h3>
 

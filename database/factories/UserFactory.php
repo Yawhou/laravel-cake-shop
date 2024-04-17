@@ -25,9 +25,9 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'phone_number' => $this->faker->numerify('###########'),
+            'phone_number' => $this->faker->numerify('+60#########'),
             'email_verified_at' => now(),
-            'password' => bcrypt('1234'), // password
+            'password' => bcrypt('qwerty'), // password
             'remember_token' => Str::random(10),
         ];
     }
